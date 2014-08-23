@@ -65,10 +65,6 @@ public class Platform : MonoBehaviour
     void Awake()
     {
         gameManager = GameObject.Find("Tile Panel").GetComponent<GameManager>();
-    }
-
-    void Start()
-    {
         slots = new Vector2[height, width];
         tiles = new Tile[height, width];
 
@@ -80,8 +76,6 @@ public class Platform : MonoBehaviour
                 tiles[y, x] = new Tile();
             }
         }
-
-        Initialize();
     }
 
     void Update()
@@ -161,7 +155,6 @@ public class Platform : MonoBehaviour
                         if (tiles[y, x].position == remainingTile.position)
                         {
                             remainingTile.value += tiles[y, x].value;
-                            gameManager.UpdateScore(remainingTile.value);
                             delete = true;
                             break;
                         }
@@ -200,6 +193,7 @@ public class Platform : MonoBehaviour
             }
 
             tiles = newTiles;
+            gameManager.UpdateScore();
             animationState = AnimationState.Stopped;
         }
     }

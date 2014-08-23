@@ -13,22 +13,16 @@ public class Menu : MonoBehaviour
 
     void OnGUI()
     {
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
         GUI.skin.button.normal.background = buttonTexture;
         GUI.skin.button.hover.background = buttonTexture;
         GUI.skin.button.active.background = buttonTexture;
         GUI.skin.button.alignment = TextAnchor.MiddleCenter;
         GUI.skin.button.fontSize = 30;
 
-        /*if (GUI.Button(new Rect(406, 537, 192, 75), "Undo"))
-        {
-
-        }
-        else if (GUI.Button(new Rect(604, 537, 192, 75), "Restart"))
-        {
-
-        }*/
-
-        if (GUI.Button(new Rect(505, 537, 192, 75), "Restart"))
+        if (GUI.Button(new Rect((screenWidth - 192) / 2, screenHeight - 100, 192, 75), "Restart"))
         {
             gameManager.Initialize();
         }

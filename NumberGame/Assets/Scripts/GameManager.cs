@@ -23,12 +23,20 @@ public class GameManager : MonoBehaviour
     {
         platform.Initialize();
         score.Initialize();
+        UpdateScore();
         isRunning = true;
     }
 
-    public void UpdateScore(int value)
+    public void UpdateScore()
     {
-        score.value += value;
+        var result = 0;
+
+        foreach (var tile in platform.tiles)
+        {
+            result += tile.value;
+        }
+
+        score.value = result;
     }
 
     void HandleInput()
@@ -62,7 +70,11 @@ public class GameManager : MonoBehaviour
     {
         platform = GameObject.Find("Tile Panel").GetComponent<Platform>();
         score = GameObject.Find("Score").GetComponent<Score>();
-        isRunning = true;
+    }
+
+    void Start()
+    {
+        Initialize();
     }
 
     void OnGUI()

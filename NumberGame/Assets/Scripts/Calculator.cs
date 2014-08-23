@@ -4,17 +4,28 @@ static class Calculator
 {
     static public bool CanMove(Platform platform)
     {
-        for (var y = 0; y < platform.height - 1; ++y)
+        for (var y = 0; y < platform.height; ++y)
         {
-            for (var x = 0; x < platform.width - 1; ++x)
+            for (var x = 0; x < platform.width; ++x)
             {
                 var current = platform.tiles[y, x].value;
-                var right = platform.tiles[y, x + 1].value;
-                var down = platform.tiles[y + 1, x].value;
                 
-                if (CanMerge(current, down) || CanMerge(current, right))
+                if (x + 1 < platform.width)
                 {
-                    return true;
+                    var right = platform.tiles[y, x + 1].value;
+                    if (CanMerge(current, right))
+                    {
+                        return true;
+                    }
+                }
+
+                if (y + 1 < platform.height)
+                {
+                    var down = platform.tiles[y + 1, x].value;
+                    if (CanMerge(current, down))
+                    {
+                        return true;
+                    }
                 }
             }
         }
