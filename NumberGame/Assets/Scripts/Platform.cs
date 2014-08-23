@@ -13,12 +13,11 @@ public class Platform : MonoBehaviour
     public AnimationState animationState { get; private set; }
     public Vector2[,] slots { get; private set; }
 
-    public Tile[,] tiles;
-
     public int height = 4;
     public int width = 4;
     public float spacing = 1.36f;
     public float speed = 5;
+    public Tile[,] tiles;
 
     GameManager gameManager;
 
@@ -31,7 +30,7 @@ public class Platform : MonoBehaviour
             for (var x = 0; x < width; ++x)
             {
                 tiles[y, x].position = tiles[y, x].targetPosition = slots[y, x];
-                tiles[y, x].value = GenerateTile();
+                tiles[y, x].value = Calculator.GenerateValue();
             }
         }
     }
@@ -40,19 +39,14 @@ public class Platform : MonoBehaviour
     {
         animationState = AnimationState.Moving;
     }
-    
-    int GenerateTile()
-    {
-        return Random.Range(1, 9);
-    }
 
-    Vector2 GetSlotIndex(Vector2 position)
+    Vector2 GetIndex(Vector2 slot)
     {
         for (var y = 0; y < height; ++y)
         {
             for (var x = 0; x < width; ++x)
             {
-                if (slots[y, x] == position)
+                if (slots[y, x] == slot)
                 {
                     return new Vector2(x, y);
                 }
@@ -60,6 +54,11 @@ public class Platform : MonoBehaviour
         }
 
         return Vector2.zero;
+    }
+
+    Vector2 GetSlot(int x, int y)
+    {
+        return new Vector2(spacing * (x - (width - 1) * 0.5f), spacing * ((height - 1) * 0.5f - y));
     }
 
     void Awake()
@@ -72,7 +71,7 @@ public class Platform : MonoBehaviour
         {
             for (var x = 0; x < width; ++x)
             {
-                slots[y, x] = new Vector2(spacing * (x - (width - 1) * 0.5f), spacing * ((height - 1) * 0.5f - y));
+                slots[y, x] = GetSlot(x, y);
                 tiles[y, x] = new Tile();
             }
         }
@@ -173,7 +172,7 @@ public class Platform : MonoBehaviour
 
             foreach (var tile in remainingTiles)
             {
-                var slot = GetSlotIndex(tile.position);
+                var slot = GetIndex(tile.position);
 
                 newTiles[(int)slot.y, (int)slot.x] = tile;
             }
@@ -186,7 +185,7 @@ public class Platform : MonoBehaviour
                     {
                         newTiles[y, x] = deletedTiles[0];
                         newTiles[y, x].position = newTiles[y, x].targetPosition = slots[y, x];
-                        newTiles[y, x].value = GenerateTile();
+                        newTiles[y, x].value = Calculator.GenerateValue();
                         deletedTiles.RemoveAt(0);
                     }
                 }

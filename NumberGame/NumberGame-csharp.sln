@@ -1,8 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-vs", "Assembly-CSharp-vs.csproj", "{284A4F67-D904-673C-D9A1-7AD742D95BFD}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{2F0B1FEF-6A14-5DEE-70CA-2D57331381BA}") = "NumberGame", "Assembly-CSharp-vs.csproj", "{0FD32A72-F623-5BE6-6C37-7BB828BBC96C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{284A4F67-D904-673C-D9A1-7AD742D95BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{284A4F67-D904-673C-D9A1-7AD742D95BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{284A4F67-D904-673C-D9A1-7AD742D95BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{284A4F67-D904-673C-D9A1-7AD742D95BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD32A72-F623-5BE6-6C37-7BB828BBC96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD32A72-F623-5BE6-6C37-7BB828BBC96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD32A72-F623-5BE6-6C37-7BB828BBC96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD32A72-F623-5BE6-6C37-7BB828BBC96C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $3
@@ -35,4 +34,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal

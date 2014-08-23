@@ -2,6 +2,17 @@
 
 public class Tile
 {
+    private int actualValue;
+    public int value
+    {
+        get { return actualValue; }
+        set
+        {
+            actualValue = value;
+            view.GetComponent<TileBehaviour>().value = actualValue;
+        }
+    }
+
     public Vector2 position
     {
         get
@@ -16,17 +27,6 @@ public class Tile
 
     public Vector2 targetPosition { get; set; }
     public GameObject view { get; set; }
-
-    private int rawValue;
-    public int value
-    {
-        get { return rawValue; }
-        set
-        {
-            rawValue = value;
-            view.GetComponent<TileBehaviour>().value = rawValue;
-        }
-    }
 
     public Tile()
     {

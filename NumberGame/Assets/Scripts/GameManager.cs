@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public enum Direction
 {
@@ -15,7 +14,6 @@ public class GameManager : MonoBehaviour
     public bool isRunning { get; private set; }
     public Direction direction { get; private set; }
 
-    KeyCode currentKey;
     Platform platform;
     Score score;
 
@@ -41,24 +39,24 @@ public class GameManager : MonoBehaviour
 
     void HandleInput()
     {
-        if (Input.anyKeyDown && !isMoving)
+        if (!isMoving)
         {
-            if (currentKey == KeyCode.A || currentKey == KeyCode.LeftArrow)
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 isMoving = true;
                 direction = Direction.Left;
             }
-            else if (currentKey == KeyCode.W || currentKey == KeyCode.UpArrow)
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 isMoving = true;
                 direction = Direction.Up;
             }
-            else if (currentKey == KeyCode.D || currentKey == KeyCode.RightArrow)
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 isMoving = true;
                 direction = Direction.Right;
             }
-            else if (currentKey == KeyCode.S || currentKey == KeyCode.DownArrow)
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 isMoving = true;
                 direction = Direction.Down;
@@ -75,11 +73,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Initialize();
-    }
-
-    void OnGUI()
-    {
-        currentKey = Event.current.keyCode;
     }
 
     void Update()

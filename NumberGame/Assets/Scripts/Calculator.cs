@@ -2,6 +2,11 @@
 
 static class Calculator
 {
+    static public int GenerateValue()
+    {
+        return Random.Range(1, 9);
+    }
+
     static public bool CanMove(Platform platform)
     {
         for (var y = 0; y < platform.height; ++y)
@@ -13,6 +18,7 @@ static class Calculator
                 if (x + 1 < platform.width)
                 {
                     var right = platform.tiles[y, x + 1].value;
+                    
                     if (CanMerge(current, right))
                     {
                         return true;
@@ -22,6 +28,7 @@ static class Calculator
                 if (y + 1 < platform.height)
                 {
                     var down = platform.tiles[y + 1, x].value;
+
                     if (CanMerge(current, down))
                     {
                         return true;
