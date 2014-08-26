@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool isRunning { get; private set; }
     public Direction direction { get; private set; }
 
+    int initialScore;
     Platform platform;
     Score score;
 
@@ -21,11 +22,11 @@ public class GameManager : MonoBehaviour
     {
         platform.Initialize();
         score.Initialize();
-        UpdateScore();
+        UpdateScore(true);
         isRunning = true;
     }
 
-    public void UpdateScore()
+    public void UpdateScore(bool firstRun = false)
     {
         var result = 0;
 
@@ -34,7 +35,12 @@ public class GameManager : MonoBehaviour
             result += tile.value;
         }
 
-        score.value = result;
+        if (firstRun)
+        {
+            initialScore = result;            
+        }
+
+        score.value = result - initialScore;
     }
 
     void HandleInput()

@@ -16,7 +16,7 @@ public class Platform : MonoBehaviour
     public int height = 4;
     public int width = 4;
     public float spacing = 1.36f;
-    public float speed = 5;
+    public float speed = 8;
     public Tile[,] tiles;
 
     GameManager gameManager;
@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour
             for (var x = 0; x < width; ++x)
             {
                 tiles[y, x].position = tiles[y, x].targetPosition = slots[y, x];
-                tiles[y, x].value = Calculator.GenerateValue();
+                Calculator.GenerateValue(tiles[y, x]);
             }
         }
     }
@@ -153,7 +153,7 @@ public class Platform : MonoBehaviour
                     {
                         if (tiles[y, x].position == remainingTile.position)
                         {
-                            remainingTile.value += tiles[y, x].value;
+                            Calculator.UpgradeValue(remainingTile, tiles[y, x]);
                             delete = true;
                             break;
                         }
@@ -185,7 +185,7 @@ public class Platform : MonoBehaviour
                     {
                         newTiles[y, x] = deletedTiles[0];
                         newTiles[y, x].position = newTiles[y, x].targetPosition = slots[y, x];
-                        newTiles[y, x].value = Calculator.GenerateValue();
+                        Calculator.GenerateValue(newTiles[y, x]);
                         deletedTiles.RemoveAt(0);
                     }
                 }
